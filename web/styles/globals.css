@@ -38,3 +38,10 @@ td {
 tr:hover {
   opacity: 1;
 }
+
+th {
+  background: white;
+  font-weight: normal;
+  padding: 1rem 2rem;
+  text-align: left;
+}

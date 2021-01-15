@@ -1,0 +1,40 @@
+:root {
+  --dark-blue: #363f5f;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: #f0f2f5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin-top: 3.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--dark-blue);
+
+  font-weight: normal;
+}
+
+.semiBorderRadius {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+td {
+  background: white;
+  padding: 1rem 2rem;
+  font-weight: normal;
+}
+tr:hover {
+  opacity: 1;
+}

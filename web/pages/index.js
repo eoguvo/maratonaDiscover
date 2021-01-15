@@ -31,7 +31,7 @@ export default function Home() {
         <section id="transaction">
           <h2>Transações</h2>
 
-          <table id="data-table">
+          <table className={styles.dataTable} id="data-table">
             <thead>
               <tr>
                 <th className="semiBorderRadius" >Descrição</th>

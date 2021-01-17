@@ -18,11 +18,10 @@ siga esses passos para instalar:
 ## ferramentas :wrench:
 utilizei na web:
 >*next*
-
->*classnames*
-
 next foi o framework web que eu escolhi pra esse app
 
 *react* e *react-dom* sao *peer-dependencies* do next
 
-e o *classnames* ajuda a usar module.css
+>*styled-components*
+
+usei *styled-components* para a estilizacoes com props (tema nesse caso)

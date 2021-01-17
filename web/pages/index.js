@@ -1,9 +1,33 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState, useEffect } from 'react';
+
+import { Icon, Header, Logo, Container, Balance, BalanceH2, Transiction, DataTable, Th, Footer } from '../styles/home'
 import BalanceCard from '../components/BalanceCard';
 import Transaction from '../components/Transaction';
+import dark from '../themes/dark'
+import light from '../themes/light'
 
 export default function Home() {
+  const [switchclass, setswitchclass] = useState('sun');
+  const [theme, setTheme] = useState(()=>{
+    if (typeof window == "undefined") return
+
+    const theme = localStorage.getItem('theme')
+    if(theme) {
+      return JSON.parse(theme);
+    }
+    else{
+      return light;
+    }
+  });
+
+  useEffect(() =>{
+    const currentTheme = theme.title == 'light' ? dark : light;
+    setTheme(currentTheme);
+    localStorage.setItem('theme', JSON.stringify(currentTheme));
+    console.log(theme)
+  }, [switchclass])
+
   return (
     <>
       <Head>
@@ -13,22 +37,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossOrigin="anonymous" />
       </Head>
-      <header className={styles.header}>
-        <h1 className={styles.logo} id="logo">dev.finance$</h1>
-      </header>
-      <main className={styles.container}>
-        <section className={styles.balance} id="balance">
-          <h2 className={styles.balanceH2} >Balanço</h2>
+      <Header>
+        <Logo id="logo">dev.finance$</Logo>
+        <Icon  onClick={()=>{setswitchclass( switchclass == 'moon' ? 'sun' : 'moon')}}>
+            <i className={`fas fa-${switchclass}`}></i>
+        </Icon>
+      </Header>
+      <Container>
+        <Balance  id="balance">
+          <BalanceH2>Balanço</BalanceH2>
           <BalanceCard title="Entradas" value="R$ 5.000,00" className="card"/>
           <BalanceCard title="Saídas" value="R$ 2.000,00" className="card"/>
           <BalanceCard title="Total" value="R$ 3.000,00" className="card total"/>
-        </section>
+        </Balance>
 
-        <section className={styles.transiction}>
+        <Transiction >
           <h2>Transações</h2>
 
-          <table className={styles.dataTable} id="data-table">
+          <DataTable id="data-table">
             <thead>
               <tr>
                 <th className="semiBorderRadius" >Descrição</th>
@@ -53,13 +81,13 @@ export default function Home() {
                 date="23/01/2021" 
               />
             </tbody>
-          </table>
-      </section>
-      </main>
+          </DataTable>
+      </Transiction>
+      </Container>
 
-      <footer className={styles.footer}>
+      <Footer>
         <p>dev.finance$</p>
-      </footer>
+      </Footer>  
     </>
   )
 }

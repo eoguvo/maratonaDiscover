@@ -1,19 +1,14 @@
 import React from 'react';
-import styles from './styles.module.css'
-import cx from 'classnames';
+import { Card, H3, P } from './styles'
 
 const BalanceCard = ({ value, title, className, ...rest }) => {
-    const newClassName = className.split(' ');
+    const newClassName = className.split(' ').length > 1 ? 'total' : '';
     return (
-        <div 
-                className={cx(
-                                          styles[`${newClassName[0]}`], 
-                                          newClassName.length != 1 && styles[`${newClassName[1]}`]
-                                      )} 
+        <Card type={newClassName}
                   {...rest}>
-          <h3 className={styles.cardH3} >{title}</h3>
-          <p>{value}</p>
-        </div>
+          <H3 >{title}</H3>
+          <P>{value}</P>
+        </Card>
     )
 }
 

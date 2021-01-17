@@ -1,14 +1,13 @@
 import React from 'react';
-import styles from './styles.module.css'
-import cx from 'classnames';
+import {Td, Tr, Desc} from './styles.js'
 
 const Transaction = ({ desc, value, date }) => {
     return (
-        <tr className={styles.tr}>
-            <td className={cx(styles['desc'])}>{desc}</td>
-            <td className={cx(styles[/^-/.test(value) ? "expense" : "income"])}>{value}</td>
-            <td className="date">{date}</td>
-        </tr>
+        <Tr >
+            <Desc >{desc}</Desc>
+            <Td type={/^-/.test(value) ? "expense" : "income"} >{value}</Td>
+            <Td >{date}</Td>
+        </Tr>
     )
 }
 

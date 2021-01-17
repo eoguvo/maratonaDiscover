@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react';
 
-import { Icon, Header, Logo, Container, Balance, BalanceH2, Transiction, DataTable, Th, Footer } from '../styles/home'
+import { Icon, Header, Logo, Container, Balance, H2, Transiction, DataTable, Th, Footer } from '../styles/home'
 import BalanceCard from '../components/BalanceCard';
 import Transaction from '../components/Transaction';
 import dark from '../themes/dark'
@@ -47,21 +47,21 @@ export default function Home() {
       </Header>
       <Container>
         <Balance  id="balance">
-          <BalanceH2>Balanço</BalanceH2>
+          <H2>Balanço</H2>
           <BalanceCard title="Entradas" value="R$ 5.000,00" className="card"/>
           <BalanceCard title="Saídas" value="R$ 2.000,00" className="card"/>
           <BalanceCard title="Total" value="R$ 3.000,00" className="card total"/>
         </Balance>
 
         <Transiction >
-          <h2>Transações</h2>
+          <H2>Transações</H2>
 
           <DataTable id="data-table">
             <thead>
               <tr>
-                <th className="semiBorderRadius" >Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
+                <Th className="semiBorderRadius" >Descrição</Th>
+                <Th>Valor</Th>
+                <Th>Data</Th>
               </tr>
             </thead>
             <tbody>
@@ -87,6 +87,7 @@ export default function Home() {
 
       <Footer>
         <p>dev.finance$</p>
+        <a href="https://github.com/Gustavo-Henrique-br/maratonaDiscover">Source Code</a>
       </Footer>  
     </>
   )

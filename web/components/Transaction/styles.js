@@ -14,5 +14,5 @@ export const Td = styled.td`
   `
 
   export const Desc = styled(Td)`
-  color: var(--dark-blue);
+  color: var(--dark-purple);
   `

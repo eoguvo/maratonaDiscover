@@ -29,8 +29,9 @@ export const Logo = styled.h1`
 export const Balance = styled.section`
     margin-top: -8rem;
 `;
-export const BalanceH2 = styled.h2`
-    color: white;
+export const H2 = styled.h2`
+    color: var(--dark-purple);
+    font-weight: 600;
     margin-top: 0;
     `;
     export const Transiction = styled.section`
@@ -44,6 +45,7 @@ export const DataTable = styled.table`
 `;
 export const Th = styled.th`
     background: white;
+    color: var(--dark-purple);
     font-weight: normal;
     padding: 1rem 2rem;
     text-align: left;
@@ -51,6 +53,6 @@ export const Th = styled.th`
 export const Footer = styled.footer`
     text-align: center;
     padding: 4rem 0 2rem;
-    color: var(--dark-blue);
+    color: var(--dark-purple);
     opacity: 0.6;
 `;

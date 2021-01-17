@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 :root {
+    --dark-purple:  rgb(121, 100, 239);
     --dark-blue: #363f5f;
 }
   html,
@@ -29,8 +30,7 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
-    color: var(--dark-blue);
-  
+    color: rgb(121, 100, 239);
     font-weight: normal;
   }
   

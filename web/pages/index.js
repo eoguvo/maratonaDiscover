@@ -1,32 +1,18 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
+import { ThemeContext } from 'styled-components';
 
 import { Icon, Header, Logo, Container, Balance, H2, Transiction, DataTable, Th, Footer } from '../styles/home'
 import BalanceCard from '../components/BalanceCard';
 import Transaction from '../components/Transaction';
-import dark from '../themes/dark'
-import light from '../themes/light'
 
-export default function Home() {
+export default function Home({ toggleTheme }) {
   const [switchclass, setswitchclass] = useState('sun');
-  const [theme, setTheme] = useState(()=>{
-    if (typeof window == "undefined") return
-
-    const theme = localStorage.getItem('theme')
-    if(theme) {
-      return JSON.parse(theme);
-    }
-    else{
-      return light;
-    }
-  });
-
-  useEffect(() =>{
-    const currentTheme = theme.title == 'light' ? dark : light;
-    setTheme(currentTheme);
-    localStorage.setItem('theme', JSON.stringify(currentTheme));
-    console.log(theme)
-  }, [switchclass])
+  const toggleClick = () => {
+    console.log('trigger')
+    toggleTheme();
+    setswitchclass(switchclass === 'sun' ? 'moon' : 'sun')
+  }
 
   return (
     <>
@@ -41,7 +27,7 @@ export default function Home() {
       </Head>
       <Header>
         <Logo id="logo">dev.finance$</Logo>
-        <Icon  onClick={()=>{setswitchclass( switchclass == 'moon' ? 'sun' : 'moon')}}>
+        <Icon  onClick={toggleClick}>
             <i className={`fas fa-${switchclass}`}></i>
         </Icon>
       </Header>

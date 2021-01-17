@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 function usePersistedState(key, initialState) {
     const [state, setState] = useState(() => {
+      if(typeof window === 'undefined') return initialState;
       const storageValue = localStorage.getItem(key);
   
       if (storageValue) {

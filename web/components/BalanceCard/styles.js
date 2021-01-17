@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export const Card = styled.div`
-    background: white;
+    background: ${({theme})=>theme.colors.primary};;
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     margin-bottom: 2rem;
-    color: var(--dark-blue);
+    color: ${({theme})=>theme.colors.text};
     ${
     ({type}) => (type=='total' && css`
         padding: 1.5rem 2rem;

@@ -10,6 +10,7 @@ export const Icon = styled.button`
     font-size: 24px;
     background: none;
     cursor: pointer;
+    color: ${({theme})=>theme.title == 'dark' ? '#FFEB3B' : '#FFC107' };
 `;
 export const Header = styled.header`
     background: linear-gradient(to right, #FFA62E, #EA4D2C);
@@ -44,7 +45,7 @@ export const DataTable = styled.table`
     color: #969cb3;
 `;
 export const Th = styled.th`
-    background: white;
+    background: ${({theme})=>theme.colors.background};
     color: var(--dark-purple);
     font-weight: normal;
     padding: 1rem 2rem;

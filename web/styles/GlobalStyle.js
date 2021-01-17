@@ -3,6 +3,8 @@ export const GlobalStyle = createGlobalStyle`
 :root {
     --dark-purple:  rgb(121, 100, 239);
     --dark-blue: #363f5f;
+    --primary: ${({theme}) => theme.colors.primary};
+    --text: ${({theme}) => theme.colors.text}
 }
   html,
   body {

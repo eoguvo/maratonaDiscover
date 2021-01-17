@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 export const Td = styled.td`
-    background: ${({theme})=>theme.colors.primary};
+    background: var(--primary);
     padding: 1rem 2rem;
     font-weight: normal;
     max-width: 100vw;
-    color: ${({type, theme}) => type ? (type=='income' ? '#12a454' : '#e92929') : theme.colors.text};
+    color: ${({type}) => type ? (type=='income' ? '#12a454' : '#e92929') : "var(--text)"};
   `
   export const Tr = styled.tr`
     opacity: .7;
+    width: 100%;
     &:hover{
         opacity: 1;
     }

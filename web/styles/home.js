@@ -45,7 +45,7 @@ export const DataTable = styled.table`
     color: #969cb3;
 `;
 export const Th = styled.th`
-    background: ${({theme})=>theme.colors.background};
+    background: var(--primary);
     color: var(--dark-purple);
     font-weight: normal;
     padding: 1rem 2rem;

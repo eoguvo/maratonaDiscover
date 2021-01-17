@@ -4,16 +4,20 @@
 }
 
 .header {
-  background: #2d4a22;
+  background: linear-gradient(to right, #FFA62E, #EA4D2C);
   padding: 2rem 0 10rem;
   text-align: center;
 }
 
 .logo {
-  color: #fff;
-  font-weight: 100;
+  background: linear-gradient(90deg, #5650de, #f869d5);
+  background-clip: text;
+  letter-spacing: -0.2rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  font-weight: 700;
 }
-
 .balance {
   margin-top: -8rem;
 }
@@ -21,6 +25,11 @@
 .balanceH2 {
   color: white;
   margin-top: 0;
+}
+
+.transiction {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .dataTable {

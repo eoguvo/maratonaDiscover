@@ -11,11 +11,8 @@ export default function Home() {
         <meta name="description" content="Um web app para te ajudar a controlar seus gastos" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,400;1,700&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet"/>
       </Head>
       <header className={styles.header}>
         <h1 className={styles.logo} id="logo">dev.finance$</h1>
@@ -28,7 +25,7 @@ export default function Home() {
           <BalanceCard title="Total" value="R$ 3.000,00" className="card total"/>
         </section>
 
-        <section id="transaction">
+        <section className={styles.transiction}>
           <h2>Transações</h2>
 
           <table className={styles.dataTable} id="data-table">

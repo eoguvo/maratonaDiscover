@@ -1,6 +1,9 @@
 .tr {
     opacity: 0.7;
 }
+.tr:hover {
+    opacity: 1;
+}
 .desc {
     color: var(--dark-blue);
 }

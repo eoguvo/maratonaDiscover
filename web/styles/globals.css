@@ -5,8 +5,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
   background: #f0f2f5;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 a {
@@ -15,6 +16,7 @@ a {
 }
 
 * {
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
@@ -34,9 +36,7 @@ td {
   background: white;
   padding: 1rem 2rem;
   font-weight: normal;
-}
-tr:hover {
-  opacity: 1;
+  max-width: 100vw;
 }
 
 th {

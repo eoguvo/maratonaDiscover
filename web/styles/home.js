@@ -1,8 +1,25 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
+
 export const Container = styled.main`
     width: min(90vw, 800px);
     margin: auto;
 `;
+
+export const Link = styled.button`
+    color: #EA4D2C;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    &:hover {
+        color:${lighten(.1, '#EA4D2C')};
+    }
+`;
+
+export const NewTransaction = styled(Link)`
+    margin-bottom: .8rem;
+`;
+
 export const Icon = styled.button`
     position: fixed;
     top: 15px;
@@ -10,7 +27,7 @@ export const Icon = styled.button`
     font-size: 24px;
     background: none;
     cursor: pointer;
-    color: ${({theme})=>theme.title == 'dark' ? '#FFEB3B' : '#FFC107' };
+    color: var(--switch);
 `;
 export const Header = styled.header`
     background: linear-gradient(to right, #FFA62E, #EA4D2C);
@@ -27,18 +44,37 @@ export const Logo = styled.h1`
     font-size: 3rem;
     font-weight: 700;
 `;
+
 export const Balance = styled.section`
     margin-top: -8rem;
+    @media (min-width: 800px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
 `;
 export const H2 = styled.h2`
     color: var(--dark-purple);
     font-weight: 600;
     margin-top: 0;
-    `;
-    export const Transiction = styled.section`
-        width: 100%;
-        overflow-x: auto;
-    `;
+`;
+
+export const ScreenOnly = styled.h2`
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: red;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+`;
+
+export const Transiction = styled.section`
+    width: 100%;
+    overflow-x: auto;
+`;
 export const DataTable = styled.table`
     width: 100%;
     border-spacing: 0 0.5rem;
@@ -50,6 +86,12 @@ export const Th = styled.th`
     font-weight: normal;
     padding: 1rem 2rem;
     text-align: left;
+    &:first-child {
+        border-radius: 0.25rem 0 0 0.25rem;
+    }
+    &:last-child {
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
 `;
 export const Footer = styled.footer`
     text-align: center;

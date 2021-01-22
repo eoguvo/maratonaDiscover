@@ -3,12 +3,16 @@ export const Td = styled.td`
     background: var(--primary);
     padding: 1rem 2rem;
     font-weight: normal;
-    max-width: 100vw;
     color: ${({type}) => type ? (type=='income' ? '#12a454' : '#e92929') : "var(--text)"};
+    &:first-child {
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+    &:last-child {
+      border-radius: 0 0.25rem 0.25rem 0;
+    }
   `
   export const Tr = styled.tr`
     opacity: .7;
-    width: 100%;
     &:hover{
         opacity: 1;
     }

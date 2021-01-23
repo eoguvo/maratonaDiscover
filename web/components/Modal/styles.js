@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { ScreenOnly } from'../../styles/Utils';
+
 export const ModalOverlay = styled.div`
     width: 100%;
     height: 100%;
@@ -21,4 +23,32 @@ export const ModalWrapper = styled.div`
     background-color: var(--primary);
     padding: 2.4rem;
     position: relative;
+`;
+
+export const Help = styled.small`
+    
+`;
+
+export const FormWrapper = styled.div`
+
+`;
+
+export const Form = styled.form`
+
+`;
+
+export const InputGroup = styled.div`
+
+`;
+
+export const Actions = styled(InputGroup)``;
+
+export const ActionButton = styled.button``;
+
+export const Label = styled(ScreenOnly)`
+
+`;
+
+export const Input = styled.input`
+
 `;

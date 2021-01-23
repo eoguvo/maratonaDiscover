@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components';
+import { ModalProvider } from '../context/Modal';
 
 import dark from '../themes/dark'
 import light from '../themes/light'
@@ -14,8 +15,10 @@ export default function MyApp({ Component, pageProps }) {
   };
     return (
         <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Component toggleTheme={toggleTheme} {...pageProps} />
+            <ModalProvider>
+                <GlobalStyle />
+                <Component toggleTheme={toggleTheme} {...pageProps} />
+            </ModalProvider>
         </ThemeProvider>
     )
 }

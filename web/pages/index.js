@@ -1,16 +1,21 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
-import { Icon, Header, Logo, Container, Balance, ScreenOnly, Transiction, NewTransaction, DataTable, Th, Footer } from '../styles/home';
+import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer } from '../styles/home';
+import { ScreenOnly } from '../styles/Utils'
 
 import BalanceCard from '../components/BalanceCard';
 import Transaction from '../components/Transaction';
 import Modal from '../components/Modal';
 
+import ModalContext from '../context/Modal';
+
 export default function Home({ toggleTheme }) {
   const [switchclass, setswitchclass] = useState('sun');
+
+  const { setActive } = useContext(ModalContext);
+
   const toggleClick = () => {
-    console.log('trigger')
     toggleTheme();
     setswitchclass(switchclass === 'sun' ? 'moon' : 'sun')
   }
@@ -63,7 +68,7 @@ export default function Home({ toggleTheme }) {
 
         <Transiction >
           <ScreenOnly>Transações</ScreenOnly>
-          <NewTransaction>+ Nova Transação</NewTransaction>
+          <NewTransaction onClick={_=>setActive(true)}>+ Nova Transação</NewTransaction>
           <DataTable id="data-table">
             <thead>
               <tr>

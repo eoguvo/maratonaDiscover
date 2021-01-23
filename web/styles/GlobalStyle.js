@@ -1,12 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
 :root {
+    --orange:#EA4D2C;
     --dark-purple:  rgb(121, 100, 239);
     --dark-blue: #363f5f;
     --primary: ${({theme}) => theme.colors.primary};
     --text: ${({theme}) => theme.colors.text};
     --switch: ${({theme})=>theme.title == 'dark' ? '#FFEB3B' : '#FFC107'};
-    --background: ${({theme}) => theme.colors.background}
+    --background: ${({theme}) => theme.colors.background};
 }
   html,
   body {
@@ -40,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
   input, textarea, select {
     background: var(--background);
     color: var(--text);
+    width:100%;
   }
 
   h2 {

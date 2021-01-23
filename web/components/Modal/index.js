@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form, FormWrapper, Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, ActionButton } from './styles'
+import { Form, FormWrapper, Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, CloseButton, SubmitButton, Title } from './styles'
 import Image from 'next/image';
 
 import ModalContext from '../../context/Modal'
@@ -32,8 +32,8 @@ const Modal = () => {
         <ModalOverlay isActive={isActive}>
             <ModalWrapper>
                 <FormWrapper>
-                    <h2>Nova Transação</h2>
-                    <Form onSubmit={HandleSubmit}>
+                    <Title>Nova Transação</Title>
+                    <Form action="" onSubmit={HandleSubmit}>
                         <InputGroup>
                             <Label htmlFor="description">Descrição</Label>
                             <Input type="text" id='description' name="description" placeholder="Descrição" />
@@ -55,7 +55,8 @@ const Modal = () => {
                         </InputGroup>
 
                         <Actions>
-                            <ActionButton onclick={_=>setActive(false)} >Cancelar</ActionButton>
+                            <CloseButton onclick={_=>setActive(false)} >Cancelar</CloseButton>
+                            <SubmitButton>Enviar</SubmitButton>
                         </Actions>
 
                     </Form>

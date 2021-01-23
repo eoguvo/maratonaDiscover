@@ -7,7 +7,7 @@ export const Container = styled.main`
 `;
 
 export const Link = styled.button`
-    color: #EA4D2C;
+    color: var(--orange);
     text-decoration: none;
     cursor: pointer;
     background: none;
@@ -30,7 +30,7 @@ export const Icon = styled.button`
     color: var(--switch);
 `;
 export const Header = styled.header`
-    background: linear-gradient(to right, #FFA62E, #EA4D2C);
+    background: linear-gradient(to right, #FFA62E, var(--orange));
     padding: 2rem 0 10rem;
     text-align: center;
 `;

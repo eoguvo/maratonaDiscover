@@ -25,6 +25,6 @@ export const Card = styled.div`
         padding: 1.5rem 2rem;
         border-radius: 0.25rem;
         margin-bottom: 2rem;
-        background: #EA4D2C;
+        background: var(--orange);
         color: white;
 `) }`;

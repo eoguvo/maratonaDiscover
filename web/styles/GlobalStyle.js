@@ -50,4 +50,12 @@ export const GlobalStyle = createGlobalStyle`
     color: rgb(121, 100, 239);
     font-weight: normal;
   }
+  img {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 `

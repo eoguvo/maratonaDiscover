@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form, FormWrapper, Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, CloseButton, SubmitButton, Title } from './styles'
-import Image from 'next/image';
+import { Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, CloseButton, SubmitButton, Title } from './styles'
 
 import ModalContext from '../../context/Modal'
 
@@ -21,8 +20,6 @@ const Modal = () => {
             return [year, month, day].join('-');
     }
 
-    console.log(isActive)
-
     const HandleSubmit = (e) => {
         e.preventDefault()
         setActive(false);
@@ -31,9 +28,9 @@ const Modal = () => {
     return (
         <ModalOverlay isActive={isActive}>
             <ModalWrapper>
-                <FormWrapper>
+                <div>
                     <Title>Nova Transação</Title>
-                    <Form action="" onSubmit={HandleSubmit}>
+                    <form action="" onSubmit={HandleSubmit}>
                         <InputGroup>
                             <Label htmlFor="description">Descrição</Label>
                             <Input type="text" id='description' name="description" placeholder="Descrição" />
@@ -59,8 +56,8 @@ const Modal = () => {
                             <SubmitButton>Enviar</SubmitButton>
                         </Actions>
 
-                    </Form>
-                </FormWrapper>
+                    </form>
+                </div>
             </ModalWrapper>
         </ModalOverlay>
     )

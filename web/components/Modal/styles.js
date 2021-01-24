@@ -43,14 +43,6 @@ export const Title = styled.h2`
     color: var(--orange);
 `;
 
-export const FormWrapper = styled.div`
-
-`;
-
-export const Form = styled.form`
-
-`;
-
 export const InputGroup = styled.div`
     margin-top: .8rem;
 `;

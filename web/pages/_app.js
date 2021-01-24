@@ -11,7 +11,6 @@ export default function MyApp({ Component, pageProps }) {
 
   const toggleTheme = () => {
       setTheme(theme.title === 'dark' ? light : dark);
-      console.log(theme)
   };
     return (
         <ThemeProvider theme={theme}>

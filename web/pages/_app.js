@@ -1,6 +1,4 @@
-import { ThemeProvider } from 'styled-components';
-import { ModalProvider } from '../context/Modal';
-
+import ContextWrapper from '../context/ContextWrapper'
 import dark from '../themes/dark'
 import light from '../themes/light'
 import usePersistedState from '../utils/usePersistedState';
@@ -13,11 +11,9 @@ export default function MyApp({ Component, pageProps }) {
       setTheme(theme.title === 'dark' ? light : dark);
   };
     return (
-        <ThemeProvider theme={theme}>
-            <ModalProvider>
+        <ContextWrapper theme={theme}>
                 <GlobalStyle />
                 <Component toggleTheme={toggleTheme} {...pageProps} />
-            </ModalProvider>
-        </ThemeProvider>
+        </ContextWrapper>
     )
 }

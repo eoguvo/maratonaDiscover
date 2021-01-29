@@ -1,10 +1,13 @@
-import React from 'react';
+import {useContext} from 'react';
 import { Card, H3, P } from './styles'
 import Image from 'next/image';
 
+import TransactionContext from '../../context/Transaction'
 
 const BalanceCard = ({ value, title, className, icon, alt, ...rest }) => {
+    const { transactions } = useContext(TransactionContext);
     const newClassName = className.split(' ').length > 1 ? 'total' : '';
+
     return (
         <Card icon={icon} type={newClassName}
                   {...rest}>

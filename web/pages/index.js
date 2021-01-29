@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer } from '../styles/home';
 import { ScreenOnly } from '../styles/Utils'
@@ -9,16 +9,34 @@ import Transaction from '../components/Transaction';
 import Modal from '../components/Modal';
 
 import ModalContext from '../context/Modal';
+import TransactionContext from '../context/Transaction';
+
+import Util from '../utils/index.js';
+
+import TransactionHandler from '../Services/TransactionHandler';
 
 export default function Home({ toggleTheme }) {
   const [switchclass, setswitchclass] = useState('sun');
+  const [income, setIncome] = useState([])
+  const [expense, setExpense] = useState([])
 
   const { setActive } = useContext(ModalContext);
-
+  const { transactions, setTransactions } = useContext(TransactionContext);
   const toggleClick = () => {
     toggleTheme();
     setswitchclass(switchclass === 'sun' ? 'moon' : 'sun')
   }
+
+  const transactionHandler = new TransactionHandler(transactions);
+
+  useEffect(()=>{
+    const [currentExpenses, currentIncomes] = 
+        transactionHandler.getValues()
+    setExpense(currentExpenses);
+    setIncome(currentIncomes);
+    transactionHandler.updateTransaction(transactions)
+    setTransactions(transactions);
+  }, [transactions])
 
   return (
     <>
@@ -42,7 +60,7 @@ export default function Home({ toggleTheme }) {
           <ScreenOnly>Balanço</ScreenOnly>
           <BalanceCard 
               title="Entradas" 
-              value="R$ 5.000,00" 
+              value={Util.formatCurrency(income)}
               className="card" 
               icon="income.svg" 
               alt="Icone de entradas" 
@@ -50,7 +68,7 @@ export default function Home({ toggleTheme }) {
 
           <BalanceCard 
               title="Saídas" 
-              value="R$ 2.000,00" 
+              value={Util.formatCurrency(expense)}
               className="card" 
               icon="expense.svg" 
               alt="Icone de saidas" 
@@ -58,7 +76,7 @@ export default function Home({ toggleTheme }) {
 
           <BalanceCard 
               title="Total" 
-              value="R$ 3.000,00" 
+              value={Util.formatCurrency(income + expense)}
               className="card total" 
               icon="total.svg" 
               alt="Icone de total" 
@@ -79,29 +97,22 @@ export default function Home({ toggleTheme }) {
               </tr>
             </thead>
             <tbody>
-              <Transaction
-                desc="Luz"
-                value="- R$ 500,00"
-                date="23/01/2021"
-              />
-              <Transaction
-                desc="Criação website"
-                value="R$ 5.000,00"
-                date="23/01/2021"
-              />
-              <Transaction
-                desc="Internet"
-                value="- R$ 200,00"
-                date="23/01/2021"
-              />
+              {transactions.map(({id, description: desc, amount, date})=>{
+                let value = Util.formatCurrency(amount);
+                const props = {id, desc,value, date}
+                return <Transaction 
+                        key={id} {...props}
+                      />
+              })}
             </tbody>
           </DataTable>
         </Transiction>
       </Container>
 
       <Footer>
-        <p>dev.finance$</p>
-        <a href="https://github.com/Gustavo-Henrique-br/maratonaDiscover">Source Code</a>
+        <a href="https://github.com/Gustavo-Henrique-br/maratonaDiscover">
+          <p>dev.finance$ - By Gustavo Henrique</p>
+        </a>
       </Footer>
 
         <Modal />

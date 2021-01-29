@@ -20,7 +20,7 @@ class TransactionHandler{
         let currentExpenses = [];
         let currentIncomes = [];
         this.#transactions.forEach(({amount})=>{
-          /* Comeca com "-"? */
+          amount = Number(amount)
           if(/^-/.test(amount)) {
             return currentExpenses.push(amount);
           }
@@ -33,6 +33,8 @@ class TransactionHandler{
                 return accumulator + currentValue
             });
         }
+        console.log(currentExpenses)
+        console.log(currentIncomes)
         currentIncomes = sumArray(currentIncomes);
         currentExpenses = sumArray(currentExpenses);
         return [currentExpenses, currentIncomes];

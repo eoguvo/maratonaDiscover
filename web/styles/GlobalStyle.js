@@ -38,6 +38,16 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
     border: none; 
   }
+  @keyframes dashIn {
+    from {
+      opacity: 0;
+      transform: translatey(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translatey(0);
+    }
+  }
   input, textarea, select {
     background: var(--background);
     color: var(--text);

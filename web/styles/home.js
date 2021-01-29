@@ -47,6 +47,7 @@ export const Logo = styled.h1`
 
 export const Balance = styled.section`
     margin-top: -8rem;
+    animation: dashIn .4s ease-in-out;
     @media (min-width: 800px) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -62,6 +63,7 @@ export const H2 = styled.h2`
 export const Transiction = styled.section`
     width: 100%;
     overflow-x: auto;
+    animation: dashIn .4s ease-in-out;
 `;
 export const DataTable = styled.table`
     width: 100%;

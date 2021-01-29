@@ -89,3 +89,14 @@ export const Footer = styled.footer`
     color: var(--dark-purple);
     opacity: 0.6;
 `;
+
+export const Toast = styled.div`
+    /* position: fixed;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    background-color: red; */
+`;

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState, useContext, useEffect } from 'react';
 
-import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer } from '../styles/home';
+import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer, Toast } from '../styles/home';
 import { ScreenOnly } from '../styles/Utils'
 
 import BalanceCard from '../components/BalanceCard';
@@ -115,7 +115,9 @@ export default function Home({ toggleTheme }) {
         </a>
       </Footer>
 
-        <Modal />
+      <Modal />
+
+      <Toast />
     </>
   )
 }

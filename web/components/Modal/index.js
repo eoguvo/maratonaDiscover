@@ -10,7 +10,7 @@ const Modal = () => {
 
     const [date,setDate] = useState(getDate());
     const [description,setDescription] = useState('');
-    const [amount,setAmount] = useState(0.00);
+    const [amount,setAmount] = useState('');
     
     function getDate () {
         let d = new Date(),

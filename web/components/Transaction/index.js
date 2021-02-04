@@ -17,9 +17,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
 
     const HandleUpdate = (e) => {
         setCurrentTransaction(transactions.filter(transaction => transaction.id===id)[0])
-        console.log(currentTransaction)
         setActive(true)
-        //transactionHandler.removeTransaction(id);
     }
 
     return (

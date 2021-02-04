@@ -33,8 +33,6 @@ class TransactionHandler{
                 return accumulator + currentValue
             });
         }
-        console.log("Expenses: ",currentExpenses.join(', '))
-        console.log("Incomes: ",currentIncomes.join(', '))
         currentIncomes = sumArray(currentIncomes);
         currentExpenses = sumArray(currentExpenses);
         return [currentExpenses, currentIncomes];

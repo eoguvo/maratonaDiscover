@@ -16,7 +16,6 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
 
     useEffect(() => {
         let {id: _id, date: _date, description: _description, amount: _amount} = currentTransaction
-        console.log(currentTransaction)
         setDate(getDate(_date))
         setDescription(_description)
         setAmount(_amount)
@@ -37,30 +36,40 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
         return [year, month, day].join('-');
     }
 
+    const HandleCancel = e=>{
+        setCurrentTransaction('');
+        setActive(false);
+    }
+
+
     const HandleSubmit = (e) => {
         e.preventDefault()
         if(!description || !amount || !date) {
             return alert("Por favor, preencha todos os campos")
         }
         setAmount(parseInt(amount));
-        console.log({
-            description,
-            amount,
-            date,
-            id
-        })
         setDescription('');
         setAmount('');
         setDate(getDate());
-        setTransactions(
-            transactions.map(transaction => {
+        setActive(false);
+        setCurrentTransaction('')
+        if(!id) {
+            setTransactions([...transactions, {
+                    description, 
+                    amount, 
+                    date
+                }]
+            )
+        }
+        else {
+            const newTransactions = transactions.map(transaction => {
                 if(transaction.id == id) {
                     return transaction = {description, amount, date, id};
                 }
                 return transaction;
-            })
-        )
-        setActive(false);
+            });
+            setTransactions(newTransactions)
+        }
     }
 
     return (
@@ -94,7 +103,8 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
                         </InputGroup>
 
                         <Actions>
-                            <CloseButton type="button" onClick={_=>setActive(false)} >Cancelar</CloseButton>
+                            <CloseButton type="button" onClick={HandleCancel} 
+                            >Cancelar</CloseButton>
                             <SubmitButton>Enviar</SubmitButton>
                         </Actions>
 

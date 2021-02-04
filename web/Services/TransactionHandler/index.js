@@ -2,7 +2,7 @@ import Util from "../../utils/index.js";
 
 class TransactionHandler{
     #transactions;
-    constructor(transactions) {
+    constructor(transactions = []) {
         this.#transactions = transactions;
         this.init();
     }
@@ -17,8 +17,10 @@ class TransactionHandler{
         return this.#transactions;
     }
     getValues() {
+        if(!this.#transactions) return [0, 0];
         let currentExpenses = [];
         let currentIncomes = [];
+        console.log(this)
         this.#transactions.forEach(({amount})=>{
           amount = Number(amount)
           if(/^-/.test(amount)) {

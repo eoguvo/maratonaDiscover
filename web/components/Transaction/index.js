@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import {Td, Tr, Desc} from './styles.js'
+import {Td, Tr, Desc, Edit} from './styles.js'
 
 import TransactionContext from '../../context/Transaction'
 
@@ -18,6 +18,12 @@ const Transaction = ({ desc, value, date, id, ...rest }) => {
             <Td type={/^-/.test(value) ? "expense" : "income"} >{value}</Td>
             <Td >{date}</Td>
             <Td onClick={HandleRemove}>
+                <Edit 
+                    alt="Edit"
+                    src="/assets/edit.svg"
+                    width={24}
+                    height={24}
+                />
                 <img
                     alt="delete"
                     src="/assets/minus.svg"

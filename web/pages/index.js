@@ -29,7 +29,7 @@ export default function Home({ toggleTheme }) {
 
   const transactionHandler = new TransactionHandler(transactions);
 
-  useEffect(()=>{
+  useEffect(function(){
     const [currentExpenses, currentIncomes] = 
         transactionHandler.getValues()
     setExpense(currentExpenses);
@@ -42,12 +42,7 @@ export default function Home({ toggleTheme }) {
     <>
       <Head>
         <title>dev.finance$</title>
-        <meta name="description" content="Um web app para te ajudar a controlar seus gastos" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossOrigin="anonymous" />
       </Head>
       <Header>
         <Logo id="logo" alt="logo dev finace">dev.finance$</Logo>
@@ -97,7 +92,7 @@ export default function Home({ toggleTheme }) {
               </tr>
             </thead>
             <tbody>
-              {transactions.map(({id, description: desc, amount, date})=>{
+              {transactions && transactions.map(({id, description: desc, amount, date})=>{
                 let value = Util.formatCurrency(amount);
                 const props = {id, desc,value, date}
                 return <Transaction 

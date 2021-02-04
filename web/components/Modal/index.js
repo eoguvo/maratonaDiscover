@@ -1,17 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, CloseButton, SubmitButton, Title } from './styles'
 
-import ModalContext from '../../context/Modal'
 import TransactionContext from '../../context/Transaction';
+import CurrentTransactionContext from '../../context/CurrentTransaction';
 
-const Modal = () => {
-    const { isActive, setActive } = useContext(ModalContext);
+const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDate='' }) => {
     const { transactions, setTransactions } = useContext(TransactionContext);
 
-    const [date,setDate] = useState(getDate());
-    const [description,setDescription] = useState('');
-    const [amount,setAmount] = useState('');
-    
+    const {currentTransaction, setCurrentTransaction} = useContext(CurrentTransactionContext);
+
+    const [date,setDate] = useState(innerDate ? getDate(innerDate) : getDate());
+    const [description,setDescription] = useState(`${innerDesc}`);
+    const [amount,setAmount] = useState(innerAmount);
+    const [id, setId] = useState('')
+
+    useEffect(() => {
+        let {id: _id, date: _date, description: _description, amount: _amount} = currentTransaction
+        console.log(currentTransaction)
+        setDate(getDate(_date))
+        setDescription(_description)
+        setAmount(_amount)
+        setId(_id)
+    }, [currentTransaction])
+
     function getDate () {
         let d = new Date(),
             month = '' + (d.getMonth() + 1),
@@ -35,17 +46,20 @@ const Modal = () => {
         console.log({
             description,
             amount,
-            date
+            date,
+            id
         })
         setDescription('');
         setAmount('');
         setDate(getDate());
-        setTransactions([...transactions,
-            { 
-                description,
-                amount,
-                date
-            }])
+        setTransactions(
+            transactions.map(transaction => {
+                if(transaction.id == id) {
+                    return transaction = {description, amount, date, id};
+                }
+                return transaction;
+            })
+        )
         setActive(false);
     }
 
@@ -53,7 +67,7 @@ const Modal = () => {
         <ModalOverlay isActive={isActive}>
             <ModalWrapper>
                 <div>
-                    <Title>Nova Transação</Title>
+                    <Title>{title}</Title>
                     <form action="" onSubmit={HandleSubmit}>
                         <InputGroup>
                             <Label htmlFor="description">Descrição</Label>

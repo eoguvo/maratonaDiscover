@@ -25,15 +25,5 @@ export const Td = styled.td`
   `
 
   export const Edit = styled.img`
-    width: 16px;
-    height: 16px;
-    opacity: 0;
-    visibility: none;
-    transition: all .3s ease-in-out;
-    position: absolute;
-    transform: translateX(120px);
-    ${Tr}:hover & {
-      opacity: 1;
-      visibility: visible;
-    }
+    color: var(--primary)
   `;

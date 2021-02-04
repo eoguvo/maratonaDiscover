@@ -8,8 +8,8 @@ import BalanceCard from '../components/BalanceCard';
 import Transaction from '../components/Transaction';
 import Modal from '../components/Modal';
 
-import ModalContext from '../context/Modal';
 import TransactionContext from '../context/Transaction';
+import currentTransactionContext from '../context/CurrentTransaction';
 
 import Util from '../utils/index.js';
 
@@ -19,15 +19,26 @@ export default function Home({ toggleTheme }) {
   const [switchclass, setswitchclass] = useState('sun');
   const [income, setIncome] = useState([])
   const [expense, setExpense] = useState([])
+  const [isActive, setActive] = useState(false)
 
-  const { setActive } = useContext(ModalContext);
   const { transactions, setTransactions } = useContext(TransactionContext);
+  const {currentTransaction } = useContext(currentTransactionContext);
   const toggleClick = () => {
     toggleTheme();
     setswitchclass(switchclass === 'sun' ? 'moon' : 'sun')
   }
 
   const transactionHandler = new TransactionHandler(transactions);
+
+  const [innerDesc, setInnerDesc] = useState('')
+  const [innerDate, setInnerDate] = useState('')
+  const [innerAmount, setInnerAmount] = useState('')
+
+  useEffect(() => {
+    setInnerDesc(currentTransaction.description);
+    setInnerAmount(currentTransaction.amount);
+    setInnerDate(currentTransaction.date);
+  }, [currentTransaction])
 
   useEffect(function(){
     const [currentExpenses, currentIncomes] = 
@@ -89,15 +100,15 @@ export default function Home({ toggleTheme }) {
                 <Th>Valor</Th>
                 <Th>Data</Th>
                 <Th></Th>
+                <Th></Th>
               </tr>
             </thead>
             <tbody>
-              {transactions && transactions.map(({id, description: desc, amount, date})=>{
+              {transactions?.map(({ id, description: desc, amount, date }) => {
                 let value = Util.formatCurrency(amount);
-                const props = {id, desc,value, date}
-                return <Transaction 
-                        key={id} {...props}
-                      />
+                const props = { setActive, id, desc, value, date };
+                return <Transaction
+                  key={id} {...props} />;
               })}
             </tbody>
           </DataTable>
@@ -110,7 +121,12 @@ export default function Home({ toggleTheme }) {
         </a>
       </Footer>
 
-      <Modal />
+      <Modal isActive={isActive} setActive={setActive} 
+          title={innerDesc ? 'Editar Transação' : 'Criar Transação'} 
+          innerDesc={innerDesc} 
+          innerAmount={innerAmount} 
+          innerDate={innerDate}       
+        />
 
       <Toast />
     </>

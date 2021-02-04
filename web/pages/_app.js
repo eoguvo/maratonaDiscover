@@ -17,3 +17,7 @@ export default function MyApp({ Component, pageProps }) {
         </ContextWrapper>
     )
 }
+
+export function reportWebVitals(metric) {
+    console.log(metric)
+  }

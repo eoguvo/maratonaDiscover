@@ -8,25 +8,23 @@ class TransactionHandler{
     }
     init() {
         this.#transactions = this.#transactions.map((transaction, index) => {
-            transaction.id = index;
-            if(transaction.date.includes('-')) {
+            transaction.id = transaction.id || index;
+            if(/-/g.test(transaction.date)) {
                 transaction.date = Util.formatDate(transaction.date);
             }
             return transaction;
         })
-        return this.#transactions;
+        return this.#transactions.sort((a, b) => a.id-b.id);
     }
     getValues() {
         if(!this.#transactions) return [0, 0];
         let currentExpenses = [];
         let currentIncomes = [];
-        console.log(this)
         this.#transactions.forEach(({amount})=>{
           amount = Number(amount)
           if(/^-/.test(amount)) {
             return currentExpenses.push(amount);
           }
-          /* Se nao... */
           currentIncomes.push(amount);
         })
         const sumArray = array => {
@@ -35,8 +33,8 @@ class TransactionHandler{
                 return accumulator + currentValue
             });
         }
-        console.log(currentExpenses)
-        console.log(currentIncomes)
+        console.log("Expenses: ",currentExpenses.join(', '))
+        console.log("Incomes: ",currentIncomes.join(', '))
         currentIncomes = sumArray(currentIncomes);
         currentExpenses = sumArray(currentExpenses);
         return [currentExpenses, currentIncomes];

@@ -1,15 +1,15 @@
 import { ThemeProvider } from 'styled-components';
-import { ModalProvider } from './Modal';
+import { CurrentTransactionProvider } from './CurrentTransaction';
 import { TransactionProvider } from './Transaction';
 
 const ContextWrapper = ({ children, theme }) => {
     return (
         <ThemeProvider theme={theme}>
-            <ModalProvider>
+            <CurrentTransactionProvider>
                 <TransactionProvider>
                     {children}
                 </TransactionProvider>
-            </ModalProvider>
+            </CurrentTransactionProvider>
         </ThemeProvider>
     )
 }

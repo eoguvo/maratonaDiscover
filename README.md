@@ -67,6 +67,7 @@ Além disto é bom ter um editor para trabalhar com o código, como o [VSCode](h
         siga esses passos para instalar:
     </h4>
 </div>
+
 ```bash
 # clonando o projeto na sua maquina
 $ git clone https://github.com/Gustavo-Henrique-br/maratonaDiscover.git

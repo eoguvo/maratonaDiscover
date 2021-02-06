@@ -4,7 +4,6 @@ import light from '../themes/light'
 import usePersistedState from '../utils/usePersistedState';
 import { GlobalStyle } from '../styles/GlobalStyle'
 
-import "nprogress/nprogress.css";
 export default function MyApp({ Component, pageProps }) {
     const [theme, setTheme] = usePersistedState('theme', light);
 

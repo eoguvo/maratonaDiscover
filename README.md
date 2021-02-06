@@ -44,7 +44,7 @@ Tabela de conteúdos
 - [ ] Toast (mensagens)
     - [X] criar toast
     - [ ] adicionar mais mensagens (atualmente existem: 3)
-- [ ] adicionar categoria
+- [ ] adicionar categorias
 - [ ] ordenar tabela de acordo com coluna x
 - [ ] autenticação e conexão de qualquer dispositivo (usando [firebase](https://firebase.google.com/))
 
@@ -60,7 +60,7 @@ veja tambem o site online <a id="deploy" alt="https://maratona-discover.vercel.a
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
-Além disto é bom ter um editor para trabalhar com o código como o [VSCode](https://code.visualstudio.com/)
+Além disto é bom ter um editor para trabalhar com o código, como o [VSCode](https://code.visualstudio.com/)
 
 <div id="install" align="center">
     <h4>
@@ -71,21 +71,21 @@ Além disto é bom ter um editor para trabalhar com o código como o [VSCode](ht
 # clonando o projeto na sua maquina
 $ git clone https://github.com/Gustavo-Henrique-br/maratonaDiscover.git
 
-# entre na pasta do projeto
+#entre na pasta do projeto
 $ cd web
 
-# instale as dependencias com:
+#instale as dependencias com:
 $ yarn install
-# ou
+#ou
 $ npm install
 
-# iniciando o servidor
+#iniciando o servidor
 $ yarn dev
-# ou
+#ou
 $ npm run dev
 
-# o servidor iniciara na porta:3000
-# acesse em <https://localhost:3000>
+#o servidor iniciara na porta:3000
+#acesse em <https://localhost:3000>
 ```
 
 <div id="techs" align="center">

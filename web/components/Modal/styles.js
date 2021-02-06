@@ -68,14 +68,16 @@ const DefaultButton = styled.button`
     border-radius: .25rem;
     padding: 0;
     cursor: pointer;
+    font-weight: bold;
+
 `;
 
 export const CloseButton = styled(DefaultButton)`
     border: 2px solid var(--orange);
     color: var(--orange);
-    font-weight: bold;
     background-color: var(--primary);
     opacity: .7;
+    transition: all .2s linear;
     &:hover {
         opacity: 1;
     }
@@ -88,7 +90,13 @@ export const CloseButton = styled(DefaultButton)`
 export const SubmitButton = styled(DefaultButton)`
     color: var(--primary);
     background-color: var(--orange);
-    &:hover {
-        background-color: #f4a595;
+    transition: all .2s linear;
+    &:hover:not(:focus) {
+        transform: translateY(-5px);
+        border-bottom: 5px solid var(--dark-orange);;
+    }
+    &:focus {
+        transform: translateY(1px);
+        background-color: var(--dark-orange);
     }
 `;

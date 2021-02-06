@@ -53,13 +53,11 @@ export default function Home({ toggleTheme }) {
       setInnerDate(currentTransaction.date);
     }, [currentTransaction])
   
-    useEffect(function(){
+    useEffect(()=>{
       const [currentExpenses, currentIncomes] = 
           transactionHandler.getValues()
       setExpense(currentExpenses);
       setIncome(currentIncomes);
-      transactionHandler.updateTransaction(transactions)
-      setTransactions(transactions);
     }, [transactions])
   
     return (

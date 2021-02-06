@@ -5,7 +5,10 @@ import usePersistedState from '../utils/usePersistedState';
 import { GlobalStyle } from '../styles/GlobalStyle'
 
 export default function MyApp({ Component, pageProps }) {
-    const [theme, setTheme] = usePersistedState('theme', light);
+    const prefersTheme = typeof window!=="undefined" 
+    &&window.matchMedia('(prefers-color-scheme: dark)') 
+        ? dark : light;
+    const [theme, setTheme] = usePersistedState('theme', prefersTheme);
 
   const toggleTheme = () => {
       setTheme(theme.title === 'dark' ? light : dark);

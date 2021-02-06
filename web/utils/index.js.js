@@ -1,14 +1,16 @@
 class Util {
     static #defaultFormart = Intl.NumberFormat("en-us", {
-        currency: "BRL",
+        currency: typeof navigator!=="undefined" 
+        && navigator.language == 'en-us' ? 'USD' : 'BRL',
         style: "currency"
     });
 
     static formatDate(date) {
-        let d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + (d.getDate() + 1),
-            year = d.getFullYear();
+        let location = navigator.location || 'pt-br'
+        let [day,month,year] = 
+            new Date(date+'T11:00:01')
+                .toLocaleDateString(location)
+                .split('/')
         if (month.length < 2) 
             month = '0' + month;
         if (day.length < 2) 

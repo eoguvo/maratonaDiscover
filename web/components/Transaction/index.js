@@ -16,7 +16,8 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
     }
 
     const HandleUpdate = (e) => {
-        setCurrentTransaction(transactions.filter(transaction => transaction.id===id)[0])
+        const filteredTransaction = transactionHandler.findById(id)
+        setCurrentTransaction(filteredTransaction);
         setActive(true)
     }
 
@@ -27,7 +28,6 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
             <Td type={/^-/.test(value) ? "expense" : "income"} >{value}</Td>
             <Td >{date}</Td>
             <Td onClick={HandleRemove}>
-                
                 <img
                     className="cursor-pointer"
                     alt="delete"
@@ -37,7 +37,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
                 />
             </Td>
             <Td>
-            <Edit onClick={HandleUpdate}
+                <Edit onClick={HandleUpdate}
                     className="cursor-pointer"
                     alt="Edit"
                     src="/assets/edit.svg"

@@ -11,7 +11,6 @@ export default function ToastComponent({title='', message='', type='success', fa
    let ToastType = getType[type]
     function closeToast() {
         if(Closing || !title && !message) return '';
-        console.log(Closing)
         isClosing(true);
         let interval = setInterval(() =>{
             setNotification('');

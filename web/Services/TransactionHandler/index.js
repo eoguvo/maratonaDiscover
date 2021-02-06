@@ -16,6 +16,10 @@ class TransactionHandler{
         })
         return this.#transactions.sort((a, b) => a.id-b.id);
     }
+    findById(id) {
+        const filteredTransaction = this.#transactions.find(transaction => transaction.id===id);
+        return filteredTransaction;
+    }
     getValues() {
         if(!this.#transactions) return [0, 0];
         let currentExpenses = [];
@@ -50,13 +54,12 @@ class TransactionHandler{
         return this.#transactions;
     }
     updateTransaction(id, newTransaction) {
-        this.#transactions.forEach(transaction =>{
+        return this.#transactions.map(transaction =>{
             if(transaction.id !== id) {
-                return;
+                return this.#transactions;
             }
-            this.#transactions[transaction] = newTransaction;
+            return newTransaction;
         })
-        return this.#transactions;
     }
     reload(transactions) {
         this.#transactions = transactions;

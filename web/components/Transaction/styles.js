@@ -19,9 +19,9 @@ export const Td = styled.td`
     }
   `
 
-  export const Desc = styled(Td)`
+export const Desc = styled(Td)`
   color: var(--dark-purple);
-  `
+`
 export const TransactionSkeleton = styled.tr`
   width: 659px;
   height: 58px;

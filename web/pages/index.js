@@ -80,9 +80,6 @@ export default function Home({ toggleTheme }) {
     setExpense(Util.formatCurrency(currentExpenses));
     setIncome(Util.formatCurrency(currentIncomes));
     setTotal(Util.formatCurrency(currentIncomes+ currentExpenses))
-    transactionHandler.updateTransaction(transactions);
-  
-    setTransactions(transactions);
     setFirstLoad(false)
     }, [transactions])
 

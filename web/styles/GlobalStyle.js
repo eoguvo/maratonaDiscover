@@ -6,6 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     --dark-blue: #363f5f;
     --primary: ${({theme}) => theme.colors.primary};
     --text: ${({theme}) => theme.colors.text};
+    --primary-text: ${({theme}) => theme.colors.primaryText};
+    --secondary-text: ${({theme}) => theme.colors.secondaryText};
     --switch: ${({theme})=>theme.title == 'dark' ? '#FFEB3B' : '#FFC107'};
     --background: ${({theme}) => theme.colors.background};
 }
@@ -48,25 +50,47 @@ export const GlobalStyle = createGlobalStyle`
       transform: translatey(0);
     }
   }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   input, textarea, select {
     background: var(--background);
     color: var(--text);
     width:100%;
   }
 
+  h1 {
+    margin: 0;
+  }
+
   h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
-    color: rgb(121, 100, 239);
+    color: var(--dark-purple);
     font-weight: normal;
   }
   img {
-    user-drag: none; 
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
   @keyframes shine {
   to {

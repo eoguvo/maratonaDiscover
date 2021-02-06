@@ -29,6 +29,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
             <Td onClick={HandleRemove}>
                 
                 <img
+                    className="cursor-pointer"
                     alt="delete"
                     src="/assets/minus.svg"
                     width={24}
@@ -37,6 +38,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
             </Td>
             <Td>
             <Edit onClick={HandleUpdate}
+                    className="cursor-pointer"
                     alt="Edit"
                     src="/assets/edit.svg"
                     width={24}

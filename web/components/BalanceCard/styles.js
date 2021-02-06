@@ -22,7 +22,7 @@ export const Card = styled.div`
     color: var(--text);
     ${
     ({type}) => (type=='total' && css`
-        background: var(--orange);
+        background: #EB5757;
         color: white;
 `) }`;
 

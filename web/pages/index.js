@@ -37,6 +37,9 @@ export default function Home({ toggleTheme }) {
   const [expense, setExpense] = useState('')
   const [isActive, setActive] = useState(false)
   const [isLoaded, setLoaded] = useState(false)
+  const [notification,setNotification] = useState('')
+  const [firstLoad, setFirstLoad] = useState(true)
+
 
   const { transactions, setTransactions } = useContext(TransactionContext);
   const {currentTransaction } = useContext(currentTransactionContext);
@@ -56,14 +59,33 @@ export default function Home({ toggleTheme }) {
     setInnerAmount(currentTransaction.amount);
     setInnerDate(currentTransaction.date);
   }, [currentTransaction])
+  
+  let windowLoaded = false;
 
   useEffect(() => {
-      const [currentExpenses, currentIncomes] = transactionHandler.getValues();
-      setExpense(Util.formatCurrency(currentExpenses));
-      setIncome(Util.formatCurrency(currentIncomes));
-      setTotal(Util.formatCurrency(currentIncomes + currentExpenses))
-      transactionHandler.updateTransaction(transactions);
-      setTransactions(transactions);
+    transactions.length == 0 
+    ? setNotification({
+      title: 'Que tal começarmos criando uma nova transação?',
+      message: 'Clique em "+ Nova Transação"',
+      type: "alert",
+      changeNotification: setNotification,
+      fadeout: false
+    }) 
+    : !firstLoad && setNotification({
+      title: 'Operação bem sucedida!',
+      message: 'Transações alteradas com sucesso!',
+      type: "success",
+      changeNotification: setNotification,
+    })
+
+    const [currentExpenses, currentIncomes] = transactionHandler.getValues();
+    setExpense(Util.formatCurrency(currentExpenses));
+    setIncome(Util.formatCurrency(currentIncomes));
+    setTotal(Util.formatCurrency(currentIncomes+ currentExpenses))
+    transactionHandler.updateTransaction(transactions);
+  
+    setTransactions(transactions);
+    setFirstLoad(false)
     }, [transactions])
 
   useEffect(() =>{
@@ -101,7 +123,7 @@ export default function Home({ toggleTheme }) {
               />
                  <BalanceCard 
                 title="Total" 
-                value={income}
+                value={total}
                 className="card total" 
                 icon="total.svg" 
                 alt="Icone de total" 
@@ -136,6 +158,10 @@ export default function Home({ toggleTheme }) {
         </Transiction>
       </Container>
 
+      {notification && <Toast
+        {...notification} 
+      />}
+
       <Footer>
         <a href="https://github.com/Gustavo-Henrique-br/maratonaDiscover">
           <p>dev.finance$ - By Gustavo Henrique</p>
@@ -149,7 +175,7 @@ export default function Home({ toggleTheme }) {
           innerDate={innerDate}       
         />
       }
-      {/* {isLoaded && <Toast />} */}
+      
     </>
   )
 }

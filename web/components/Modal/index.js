@@ -61,7 +61,8 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
         setDate(getDate());
         setActive(false);
         setCurrentTransaction('')
-        if(!id) {
+        console.log(id)
+        if(id!='') {
             setTransactions([...transactions, {
                     description, 
                     amount, 

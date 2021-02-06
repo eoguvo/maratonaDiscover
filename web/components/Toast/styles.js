@@ -1,11 +1,13 @@
 import styled, {css} from 'styled-components';
 
 export const ToastOverlay = styled.span`
-    height: 150px;
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    position: fixed;
+    top:50px;
 `;
 export const ToastWrapper = styled.span`
     animation: fadeIn .5s ease-in-out;
@@ -19,8 +21,9 @@ export const ToastWrapper = styled.span`
     border-radius: .25rem;
     box-shadow: 2px 6px 10px rgba(0, 0, 0, .4);
     padding: 12px;
-    background-color: ${({bgColor})=>bgColor};
     position: relative;
+    z-index: 2;
+    background-color: ${({bgColor})=>bgColor};
     ${({Closing})=>Closing && css`
         opacity: 0;
         animation: fadeOut ${({fadeOutDelay})=>fadeOutDelay}ms linear;

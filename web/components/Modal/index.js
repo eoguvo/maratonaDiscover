@@ -56,7 +56,7 @@ const Modal = ({ isActive, setActive, title, innerDesc = '', innerAmount = '', i
 
     const HandleSubmit = (e) => {
         e.preventDefault()
-        if (!description || !amount || !date) {
+        if (!description || !amount || !date || amount != 0) {
             return alert("Por favor, preencha todos os campos")
         }
         setAmount(parseInt(amount));

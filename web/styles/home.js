@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
 
 export const Container = styled.main`
     width: min(90vw, 800px);
@@ -12,7 +11,7 @@ export const Link = styled.button`
     cursor: pointer;
     background: none;
     &:hover {
-        color:${lighten(.1, '#EA4D2C')};
+        color:#ec5e41;
     }
 `;
 

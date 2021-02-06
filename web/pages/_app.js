@@ -4,6 +4,7 @@ import light from '../themes/light'
 import usePersistedState from '../utils/usePersistedState';
 import { GlobalStyle } from '../styles/GlobalStyle'
 
+import "nprogress/nprogress.css";
 export default function MyApp({ Component, pageProps }) {
     const [theme, setTheme] = usePersistedState('theme', light);
 
@@ -11,10 +12,12 @@ export default function MyApp({ Component, pageProps }) {
       setTheme(theme.title === 'dark' ? light : dark);
   };
     return (
+    <>
         <ContextWrapper theme={theme}>
                 <GlobalStyle />
                 <Component toggleTheme={toggleTheme} {...pageProps} />
         </ContextWrapper>
+    </>
     )
 }
 

@@ -82,14 +82,14 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
                             <Label htmlFor="description">Descrição</Label>
                             <Input type="text" id='description' name="description" placeholder="Descrição"
                             onChange={e=>setDescription(e.target.value)}
-                            value={description} />
+                            value={description || ""} />
                         </InputGroup>
 
                         <InputGroup>
                             <Label htmlFor="amount">Valor</Label>
                             <Input  step='0.05' type="number" id='amount' name="amount" placeholder="0,00" 
                             onChange={e=>setAmount(e.target.value)}
-                            value={amount} />
+                            value={amount|| ""} />
                             <Help>
                                 Use o sinal - (negativo) para despesas e , (virgula) para casas decimais
                             </Help>
@@ -99,7 +99,7 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
                             <Label htmlFor="date">Data</Label>
                             <Input type="date" id='date' name="date" 
                                 onChange={e=>setDate(e.target.value)}  
-                                value={date} />
+                                value={date|| ""} />
                         </InputGroup>
 
                         <Actions>

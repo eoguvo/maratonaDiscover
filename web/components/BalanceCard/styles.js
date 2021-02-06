@@ -22,9 +22,18 @@ export const Card = styled.div`
     color: var(--text);
     ${
     ({type}) => (type=='total' && css`
-        padding: 1.5rem 2rem;
-        border-radius: 0.25rem;
-        margin-bottom: 2rem;
         background: var(--orange);
         color: white;
 `) }`;
+
+export const BalanceSkeleton = styled.div`
+    padding: 1.5rem 2rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+    height: 174px;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+`;

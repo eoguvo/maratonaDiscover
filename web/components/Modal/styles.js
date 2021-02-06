@@ -2,8 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { ScreenOnly } from'../../styles/Utils';
 
-import { lighten } from 'polished';
-
 export const ModalOverlay = styled.div`
     width: 100%;
     height: 100%;
@@ -89,6 +87,6 @@ export const SubmitButton = styled(DefaultButton)`
     color: var(--primary);
     background-color: var(--orange);
     &:hover {
-        background-color: ${lighten(.05, '#EA4D2C')}
+        background-color: #f4a595;
     }
 `;

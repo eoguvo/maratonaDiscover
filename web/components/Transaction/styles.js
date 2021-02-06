@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lighten, cssVar } from 'polished';
 export const Td = styled.td`
     background: var(--primary);
     padding: 1rem 2rem;
@@ -23,7 +22,15 @@ export const Td = styled.td`
   export const Desc = styled(Td)`
   color: var(--dark-purple);
   `
-
+export const TransactionSkeleton = styled.tr`
+  width: 659px;
+  height: 58px;
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+`;
   export const Edit = styled.img`
     color: var(--primary)
   `;

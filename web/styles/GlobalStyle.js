@@ -68,4 +68,9 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-user-select: none;
     -ms-user-select: none;
   }
+  @keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
 `

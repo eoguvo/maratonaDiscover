@@ -1,12 +1,27 @@
 import Head from 'next/head'
 import { useState, useContext, useEffect } from 'react';
 
-import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer, Toast } from '../styles/home';
+import dynamic from 'next/dynamic'
+
+import { TransactionSkeleton } from '~/components/Transaction/styles';
+import {BalanceSkeleton} from '../components/BalanceCard/styles'
+import { Icon, Header, Logo, Container, Balance, Transiction, NewTransaction, DataTable, Th, Footer } from '../styles/home';
 import { ScreenOnly } from '../styles/Utils'
 
-import BalanceCard from '../components/BalanceCard';
-import Transaction from '../components/Transaction';
-import Modal from '../components/Modal';
+const Toast = dynamic(
+  ()=> import('../components/Toast/index'),
+  { loading: () => <h1>Loading..</h1>}
+)
+const BalanceCard = dynamic(
+  ()=> import('../components/BalanceCard/index'),
+  { loading: () => <BalanceSkeleton/> });
+const Transaction = dynamic(
+  ()=> import('../components/Transaction'),
+  { loading: () => <TransactionSkeleton/> }
+  );
+const Modal = dynamic(
+  ()=> import('../components/Modal/index'),
+  { loading: () => <h1>Loading..</h1> });
 
 import TransactionContext from '../context/Transaction';
 import currentTransactionContext from '../context/CurrentTransaction';
@@ -17,9 +32,11 @@ import TransactionHandler from '../Services/TransactionHandler';
 
 export default function Home({ toggleTheme }) {
   const [switchclass, setswitchclass] = useState('sun');
-  const [income, setIncome] = useState([])
-  const [expense, setExpense] = useState([])
+  const [income, setIncome] = useState('')
+  const [total, setTotal] = useState('')
+  const [expense, setExpense] = useState('')
   const [isActive, setActive] = useState(false)
+  const [isLoaded, setLoaded] = useState(false)
 
   const { transactions, setTransactions } = useContext(TransactionContext);
   const {currentTransaction } = useContext(currentTransactionContext);
@@ -40,15 +57,18 @@ export default function Home({ toggleTheme }) {
     setInnerDate(currentTransaction.date);
   }, [currentTransaction])
 
-  useEffect(function(){
-    const [currentExpenses, currentIncomes] = 
-        transactionHandler.getValues()
-    setExpense(currentExpenses);
-    setIncome(currentIncomes);
-    transactionHandler.updateTransaction(transactions)
-    setTransactions(transactions);
-  }, [transactions])
+  useEffect(() => {
+      const [currentExpenses, currentIncomes] = transactionHandler.getValues();
+      setExpense(Util.formatCurrency(currentExpenses));
+      setIncome(Util.formatCurrency(currentIncomes));
+      setTotal(Util.formatCurrency(currentIncomes + currentExpenses))
+      transactionHandler.updateTransaction(transactions);
+      setTransactions(transactions);
+    }, [transactions])
 
+  useEffect(() =>{
+    setLoaded(true);
+  }, [])
   return (
     <>
       <Head>
@@ -64,30 +84,29 @@ export default function Home({ toggleTheme }) {
       <Container>
         <Balance id="balance">
           <ScreenOnly>Balanço</ScreenOnly>
-          <BalanceCard 
-              title="Entradas" 
-              value={Util.formatCurrency(income)}
-              className="card" 
-              icon="income.svg" 
-              alt="Icone de entradas" 
-            />
-
-          <BalanceCard 
-              title="Saídas" 
-              value={Util.formatCurrency(expense)}
-              className="card" 
-              icon="expense.svg" 
-              alt="Icone de saidas" 
-            />
-
-          <BalanceCard 
-              title="Total" 
-              value={Util.formatCurrency(income + expense)}
-              className="card total" 
-              icon="total.svg" 
-              alt="Icone de total" 
-            />
-
+          {isLoaded && <>
+            <BalanceCard 
+                title="Entradas" 
+                value={income}
+                className="card" 
+                icon="income.svg" 
+                alt="Icone de entradas" 
+              />
+                 <BalanceCard 
+                title="Saídas" 
+                value={expense}
+                className="card" 
+                icon="expense.svg" 
+                alt="Icone de saidas" 
+              />
+                 <BalanceCard 
+                title="Total" 
+                value={income}
+                className="card total" 
+                icon="total.svg" 
+                alt="Icone de total" 
+              />
+        </>}
         </Balance>
 
         <Transiction >
@@ -104,12 +123,14 @@ export default function Home({ toggleTheme }) {
               </tr>
             </thead>
             <tbody>
-              {transactions?.map(({ id, description: desc, amount, date }) => {
-                let value = Util.formatCurrency(amount);
-                const props = { setActive, id, desc, value, date };
-                return <Transaction
-                  key={id} {...props} />;
+              {isLoaded && transactions.map(({ id, description: desc, amount, date }) => {
+                    let value = Util.formatCurrency(amount);
+                    const props = { setActive, id, desc, value, date };
+
+                    return <Transaction
+                      key={`R$${amount}-${id}`} {...props} />;
               })}
+              
             </tbody>
           </DataTable>
         </Transiction>
@@ -121,14 +142,14 @@ export default function Home({ toggleTheme }) {
         </a>
       </Footer>
 
-      <Modal isActive={isActive} setActive={setActive} 
+      {isActive && <Modal isActive={isActive} setActive={setActive} 
           title={innerDesc ? 'Editar Transação' : 'Criar Transação'} 
           innerDesc={innerDesc} 
           innerAmount={innerAmount} 
           innerDate={innerDate}       
         />
-
-      <Toast />
+      }
+      {/* {isLoaded && <Toast />} */}
     </>
   )
 }

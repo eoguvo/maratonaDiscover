@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import {Td, Tr, Desc, Edit} from './styles.js'
 
 import TransactionContext from '../../context/Transaction'
@@ -8,7 +8,7 @@ import TransactionHandler from '../../Services/TransactionHandler';
 
 const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
     const { transactions, setTransactions } = useContext(TransactionContext);
-    const { currentTransaction, setCurrentTransaction} = useContext(CurrentTransactionContext);
+    const { setCurrentTransaction} = useContext(CurrentTransactionContext);
     const transactionHandler = new TransactionHandler(transactions);
     const HandleRemove = (e) => {
         const newTransactions = transactionHandler.removeTransaction(id);
@@ -21,6 +21,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
     }
 
     return (
+        <>
         <Tr {...rest}>
             <Desc >{desc}</Desc>
             <Td type={/^-/.test(value) ? "expense" : "income"} >{value}</Td>
@@ -43,6 +44,7 @@ const Transaction = ({ desc, value, date, id, setActive, ...rest }) => {
                 />
             </Td>
         </Tr>
+        </>
     )
 }
 

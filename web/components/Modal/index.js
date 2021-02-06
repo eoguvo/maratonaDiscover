@@ -4,7 +4,7 @@ import { Input, InputGroup, Label, ModalOverlay, ModalWrapper, Help, Actions, Cl
 import TransactionContext from '../../context/Transaction';
 import CurrentTransactionContext from '../../context/CurrentTransaction';
 
-const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDate='' }) => {
+const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDate='', setNotification }) => {
     const { transactions, setTransactions } = useContext(TransactionContext);
 
     const {currentTransaction, setCurrentTransaction} = useContext(CurrentTransactionContext);
@@ -39,6 +39,14 @@ const Modal = ({ isActive, setActive, title, innerDesc='',innerAmount='',innerDa
     const HandleCancel = e=>{
         setCurrentTransaction('');
         setActive(false);
+        setNotification(
+        {
+            title: 'Operação cancelada com sucesso!',
+            message: 'Melhor fazer isso outra hora mesmo...',
+            type: "success",
+            setNotification,
+            fadeout: true
+        })
     }
 
 

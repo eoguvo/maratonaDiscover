@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {ToastOverlay, ToastWrapper, NotificationWrapper, Icon, Title, Description, CloseButton} from './styles'
 
-export default function ToastComponent({title='', message='', type='success', fadeout=true, timeout=5000, changeNotification=()=>{}}) {
+export default function ToastComponent({title='', message='', type='success', fadeout=true, timeout=500, setNotification}) {
     const [Closing, isClosing] = useState(false)
     const getType = {
         error: {color: '#FFE8E8', bgColor: '#EB5757', className: 'fas fa-ban',primaryText: '#fff', secondaryText: '#FFE8E8'},
@@ -9,26 +9,28 @@ export default function ToastComponent({title='', message='', type='success', fa
         alert: {color: '#6E5404', bgColor: '#F2C94C', className: 'fas fa-info-circle', primaryText: '#6E5404', secondaryText: '#866912'}
     }
    let ToastType = getType[type]
-   function closeToast() {
+    function closeToast() {
         if(Closing || !title && !message) return '';
+        console.log(Closing)
         isClosing(true);
         let interval = setInterval(() =>{
-            changeNotification('');
-            isClosing(false);
-            console.log(`closing`, Closing)
+            setNotification('');
+            isClosing(true);
             clearInterval(interval);
-        }, 510);
+        }, 500);
         return () => clearInterval(interval);
     }
     useEffect(() =>{
+        if(title || message || !fadeout) return '';
+        isClosing(false);
         let interval = setInterval(() =>{
             closeToast()
-            changeNotification('');
+            setNotification('');
         }, timeout);
         return () => {
             clearInterval(interval);
         }
-    }, [])
+    }, [title, message])
     return (
     <ToastOverlay>
         <ToastWrapper  fadeOutDelay={500} Closing={Closing} bgColor={ToastType.bgColor}>

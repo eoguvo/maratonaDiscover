@@ -59,23 +59,21 @@ export default function Home({ toggleTheme }) {
     setInnerAmount(currentTransaction.amount);
     setInnerDate(currentTransaction.date);
   }, [currentTransaction])
-  
-  let windowLoaded = false;
 
   useEffect(() => {
     transactions.length == 0 
-    ? setNotification({
+    ? firstLoad && setNotification({
       title: 'Que tal começarmos criando uma nova transação?',
       message: 'Clique em "+ Nova Transação"',
       type: "alert",
-      changeNotification: setNotification,
+      setNotification,
       fadeout: false
     }) 
     : !firstLoad && setNotification({
       title: 'Operação bem sucedida!',
       message: 'Transações alteradas com sucesso!',
       type: "success",
-      changeNotification: setNotification,
+      setNotification,
     })
 
     const [currentExpenses, currentIncomes] = transactionHandler.getValues();
@@ -169,7 +167,8 @@ export default function Home({ toggleTheme }) {
       </Footer>
 
       {isActive && <Modal isActive={isActive} setActive={setActive} 
-          title={innerDesc ? 'Editar Transação' : 'Criar Transação'} 
+          title={innerDesc ? 'Editar Transação' : 'Criar Transação'}
+          setNotification={setNotification}
           innerDesc={innerDesc} 
           innerAmount={innerAmount} 
           innerDate={innerDate}       
